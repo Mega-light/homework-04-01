@@ -1,3 +1,4 @@
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -21,7 +22,7 @@ public class Homework {
      * Run the Selenium Introduction
      * @param webDriver  Implementation of <code>WebDriver</code> to be run
      */
-    private static void runExercise1(WebDriver webDriver){
+    private static void runExercise1(@NotNull WebDriver webDriver){
         String url = "https://opencart.abstracta.us/index.php?route=common/home";
         webDriver.manage().window().maximize();
         webDriver.get(url);
