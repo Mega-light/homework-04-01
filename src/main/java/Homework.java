@@ -48,8 +48,8 @@ public class Homework {
         // Look for another element that contains ID and locate the element By ID
 
         // Use this new element with an action like click or store the text it contains
-        WebElement search_query_top = webDriver.findElement(By.id("search_query_top"));
-        search_query_top.sendKeys("Printed Dress");
+        WebElement searchQueryTop = webDriver.findElement(By.id("search_query_top"));
+        searchQueryTop.sendKeys("Printed Dress");
         webDriver.findElement(By.cssSelector("#searchbox>button")).click();
 
         // Go back to the main page
