@@ -1,11 +1,14 @@
 import org.jetbrains.annotations.NotNull;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 public class Homework {
@@ -16,7 +19,56 @@ public class Homework {
         runExercise1(new FirefoxDriver());
         runExercise1(new EdgeDriver());
 
+        runExercise2(new ChromeDriver());
+        runExercise2(new FirefoxDriver());
+        runExercise2(new EdgeDriver());
+
     }
+
+    /**
+     * Run the Selenium Locators
+     * @param webDriver  Implementation of <code>WebDriver</code> to be run
+     */
+    private static void runExercise2(@NotNull WebDriver webDriver){
+        String url = "https://automationpractice.com/index.php";
+        webDriver.manage().window().maximize();
+        webDriver.get(url);
+
+
+        // Look for the element with the text "BEST SELLERS"
+
+        // Find the correct XPATH for that element
+        WebElement xpathElement = webDriver.findElement(By.xpath("//a[@class='blockbestsellers']"));
+        // Find the CSS path
+        WebElement cssElement = webDriver.findElement(By.cssSelector("a.blockbestsellers"));
+
+        // Use either the XPATH or CSS path to do a click action on that element
+        cssElement.click();
+
+        // Look for another element that contains ID and locate the element By ID
+
+        // Use this new element with an action like click or store the text it contains
+        WebElement search_query_top = webDriver.findElement(By.id("search_query_top"));
+        search_query_top.sendKeys("Printed Dress");
+        webDriver.findElement(By.cssSelector("#searchbox>button")).click();
+
+        // Go back to the main page
+        webDriver.navigate().back();
+
+        // Find multiple elements with the same class, for example
+        // "price product-price" and get the price of the first and the last
+        // element and show those prices in console
+        List<WebElement> elements = webDriver.findElements(By.cssSelector("[class='price product-price']"));
+        elements.removeIf(next -> next.getText().isEmpty());
+        WebElement first = elements.get(0);
+        System.out.println(first.getText());
+        WebElement last = elements.get(elements.size() - 1);
+        System.out.println(last.getText());
+
+        // Close the browser window
+        webDriver.close();
+    }
+
 
     /**
      * Run the Selenium Introduction
